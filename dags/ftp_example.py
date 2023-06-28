@@ -4,7 +4,8 @@ from airflow.providers.ftp.hooks.ftp import FTPHook
 from datetime import datetime
 
 default_args = {
-    'start_date': datetime(2023, 1, 1)
+    'owner': 'airflow',
+    'start_date': datetime(2022, 1, 1)
 }
 
 with DAG('ftp_example', schedule_interval='@daily', default_args=default_args, catchup=False) as dag:
@@ -26,4 +27,4 @@ with DAG('ftp_example', schedule_interval='@daily', default_args=default_args, c
         remote_filepath='/path/to/remote/file.txt'
     )
 
-ftp_conn >> download_task
+    download_task
